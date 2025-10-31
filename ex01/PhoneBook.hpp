@@ -3,7 +3,8 @@
 
 #include "Contact.hpp"
 
-class PhoneBook {
+class PhoneBook
+{
     private:
         int index ;
         Contact contacts[8];

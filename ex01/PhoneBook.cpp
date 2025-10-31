@@ -6,12 +6,10 @@
 /*   By: malak <malak@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 22:58:43 by malak             #+#    #+#             */
-/*   Updated: 2025/11/01 00:56:07 by malak            ###   ########.fr       */
+/*   Updated: 2025/11/01 01:19:36 by malak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include <iomanip>
 #include "PhoneBook.hpp"
 
 PhoneBook::PhoneBook()
@@ -38,12 +36,17 @@ void PhoneBook::addContact()
 
 void PhoneBook::searchContacts()
 {
+    if (index == 0)
+    {
+        std::cout << "Phonebook is empty. Please add contacts first." << std::endl;
+        return;
+    }
     std::cout << "-------------------------------------------" << std::endl;
     std::cout << "|  Index   |First Name| Last Name| Nickname |" << std::endl;
     std::cout << "-------------------------------------------" << std::endl;
     for (int i = 0; i < index; i++)
     {
-        std::cout << "|" << std::setw(10) << std::right << i;
+        std::cout << "|" << std::setw(10) << std::right << i + 1;
         check_and_replace(contacts[i].get_first_name());
         printCol(contacts[i].get_first_name());
         check_and_replace(contacts[i].get_last_name());
@@ -77,7 +80,7 @@ void PhoneBook::check_and_display()
         if (!(std::cin >> input))
         {
             if(std::cin.eof())
-                std::cout << "Input interrupted (EOF). I can't exit when you are inside a command .\n";
+                exit(1);
             else if (std::cin.fail())
                 std::cout << "Invalid input. index should be a number: " << std::endl;
             else
@@ -85,12 +88,12 @@ void PhoneBook::check_and_display()
             std::cin.clear(); 
             continue;     
         }
-        if (input < 0 || input >= index)
+        if (input < 0 || input > index)
         {
-            std::cout << "Index out of range. Please enter a valid index (1-" << index + 1 <<"): " << std::endl;
+            std::cout << "Index out of range. Please enter a valid index "<< std::endl;
             continue;
         }
-        contacts[index].display_contact_details();
+        contacts[input - 1].display_contact_details();
         break;       
     }
 }

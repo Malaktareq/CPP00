@@ -2,6 +2,8 @@
 #define CONTACT_HPP
 
 #include <iostream>
+#include <cstdlib>
+#include <iomanip>
 
 enum ContactNameFields {
     first,

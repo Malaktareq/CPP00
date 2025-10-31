@@ -11,9 +11,8 @@ int main() {
         std::cout << "Please enter a command (ADD, SEARCH, EXIT): " << std::endl;
         if (!std::getline(std::cin, command))
         {
-            std::cout << "\nInput interrupted (EOF). Type EXIT to quit.\n";
-            std::cin.clear(); 
-            continue;     
+            std::cout << " Goodbye! \n";
+            break;
         }
         if (command == "ADD")
             Phonebook.addContact();

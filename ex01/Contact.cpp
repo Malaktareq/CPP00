@@ -7,21 +7,15 @@ void Contact::add_name(ContactNameFields field){
     while(1)
     {
         if (!std::getline(std::cin, name))
-        {
-            std::cout << "\nInput interrupted (EOF). Type EXIT to quit.\n";
-            std::cin.clear(); 
-            continue;
-        }    
+            exit(1);
         if(name.empty())
         {
-            std::cout << "First name cannot be empty. Please enter again: ";
-            std::getline(std::cin, name);
+            std::cout << "First name cannot be empty. Please enter again: " << std::endl;
             continue;
         }
         if(name.find_first_of("0123456789") != std::string::npos && field != nick)
         {
-            std::cout << "First name cannot contain numbers. Please enter again: ";
-            std::getline(std::cin, name);
+            std::cout << "First name cannot contain numbers. Please enter again: " << std::endl;
             continue;
         }
         break;
@@ -39,27 +33,20 @@ void Contact::add_phone_number(){
     while(1)
     {
         if (!std::getline(std::cin, number))
-        {
-            std::cout << "\nInput interrupted (EOF). Type EXIT to quit.\n";
-            std::cin.clear(); 
-            continue;     
-        }
+            exit(1);
         if(number.empty())
         {
-            std::cout << "Phone number cannot be empty. Please enter again: ";
-            std::getline(std::cin, number);
+            std::cout << "Phone number cannot be empty. Please enter again: " << std::endl;
             continue;
         }
         if(number.find_first_not_of("0123456789") != std::string::npos)
         {
-            std::cout << "Phone number must contain only digits. Please enter again: ";
-            std::getline(std::cin, number);
+            std::cout << "Phone number must contain only digits. Please enter again: " << std::endl;
             continue;
         }
         if (number.length() != 10)
         {
-            std::cout << "Phone number must be exactly 10 digits. Please enter again: ";
-            std::getline(std::cin, number);
+            std::cout << "Phone number must be exactly 10 digits. Please enter again: " << std::endl;
             continue;
         }
         break;
@@ -72,11 +59,7 @@ void Contact::add_darkest_secret(){
     while(1)
     {
         if (!std::getline(std::cin, secret))
-        {
-            std::cout << "\nInput interrupted (EOF). Type EXIT to quit." << std::endl;
-            std::cin.clear(); 
-            continue;     
-        }
+            exit(1);
         else if(secret.empty())
         {
             std::cout << "Darkest secret cannot be empty. Please enter again: " << std::endl;
