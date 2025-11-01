@@ -18,17 +18,15 @@ class Contact{
         std::string nickname;
         std::string phone_number;
         std::string darkest_secret;
+        void check_and_replace(std::string& str);
+        void printCol(std::string str);
+        std::string get_name_type(ContactNameFields field);
     public:
         void add_name(ContactNameFields field);
         void add_phone_number();
         void add_darkest_secret();
         void display_contact_details();
-        std::string& get_first_name();
-        std::string& get_last_name();
-        std::string& get_nickname();
-        std::string& get_phone_number();
-        std::string& get_darkest_secret();
-
+        void display_summary();
 };
 
 

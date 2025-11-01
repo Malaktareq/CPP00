@@ -1,6 +1,6 @@
 #include "Contact.hpp"
 #include "PhoneBook.hpp"
-
+#include <cstring>
 int main() {
     PhoneBook Phonebook;
     std::string command;
@@ -14,11 +14,16 @@ int main() {
             std::cout << " Goodbye! \n";
             break;
         }
+        for (size_t i = 0; i < command.length(); i++)
+            command[i] = toupper(command[i]);
         if (command == "ADD")
             Phonebook.addContact();
         else if (command == "SEARCH")
             Phonebook.searchContacts();
         else if (command == "EXIT")
+        {
+            std::cout << " Goodbye! see you later! \n";
             break;
+        }
     }
 }

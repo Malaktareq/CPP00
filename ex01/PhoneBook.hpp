@@ -2,21 +2,19 @@
 #define PHONEBOOK_HPP
 
 #include "Contact.hpp"
+#include <limits>
 
 class PhoneBook
 {
     private:
         int index ;
+        int num_contacts;
         Contact contacts[8];
-        void printCol(std::string str);
-        void check_and_replace(std::string& str);
         void check_and_display();
     public:
-         PhoneBook();
+        PhoneBook();
         void addContact();
         void searchContacts();
-
-    
 };
 
 #endif

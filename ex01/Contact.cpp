@@ -1,6 +1,14 @@
 #include "Contact.hpp"
 
-
+std::string Contact::get_name_type(ContactNameFields field){
+    if (field == first)
+        return "first name";
+    else if (field == last)
+        return "last name";
+    else if (field == nick)
+        return "nickname";
+    return "";
+}
 void Contact::add_name(ContactNameFields field){
 
     std::string name;
@@ -10,12 +18,12 @@ void Contact::add_name(ContactNameFields field){
             exit(1);
         if(name.empty())
         {
-            std::cout << "First name cannot be empty. Please enter again: " << std::endl;
+            std::cout  << get_name_type(field) << " cannot be empty. Please enter again: " << std::endl;
             continue;
         }
         if(name.find_first_of("0123456789") != std::string::npos && field != nick)
         {
-            std::cout << "First name cannot contain numbers. Please enter again: " << std::endl;
+            std::cout << get_name_type(field) << " cannot contain numbers. Please enter again: " << std::endl;
             continue;
         }
         break;
@@ -70,6 +78,19 @@ void Contact::add_darkest_secret(){
     darkest_secret = secret;
 }
 
+void Contact::check_and_replace(std::string& str)
+{
+    if (str.length() > 10)
+    {
+        str = str.substr(0, 9) + ".";
+    }
+}
+
+void Contact::printCol(std::string str)
+{
+    std::cout << "|" << std::setw(10) << std::right << str;
+}
+
 void Contact::display_contact_details(){
     std::cout << "First Name: " << first_name << std::endl;
     std::cout << "Last Name: " << last_name << std::endl;
@@ -77,27 +98,13 @@ void Contact::display_contact_details(){
     std::cout << "Phone Number: " << phone_number << std::endl;
     std::cout << "Darkest Secret: " << darkest_secret <<  std::endl;
 }
-std::string& Contact::get_first_name()
-{
-    return first_name;
+
+void Contact::display_summary(){
+    check_and_replace(first_name);
+    printCol(first_name);
+    check_and_replace(last_name);
+    printCol(last_name);
+    check_and_replace(nickname);
+    printCol(nickname);
 }
 
-std::string& Contact::get_last_name()
-{
-    return last_name;
-}
-
-std::string& Contact::get_nickname()
-{
-    return nickname;
-}
-
-std::string& Contact::get_phone_number()
-{
-    return phone_number;
-}
-
-std::string& Contact::get_darkest_secret()
-{
-    return darkest_secret;
-}
